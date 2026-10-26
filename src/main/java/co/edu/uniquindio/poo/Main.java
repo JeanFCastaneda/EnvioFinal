@@ -1,17 +1,35 @@
 package co.edu.uniquindio.poo;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        List<Envio> listaEnvios = new ArrayList<>();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        Envio e1 = new EnvioNacional("001", "Ana Gómez", 2.5, "Medellín", true);
+        Envio e2 = new EnvioInternacional("-002", "Mailon Enrique", 1.0, "EEUU", true);
+        Envio e3 = new EnvioExpress("003", "Eduardo Saldarriaga ", 3.0, "Bogotá", true, 12);
+
+        listaEnvios.add(e1);
+        listaEnvios.add(e2);
+        listaEnvios.add(e3);
+
+
+        double costoTotalEmpresa = 0;
+
+        System.out.println("=== REPORTE DE ENVÍOS DE LA EMPRESA ===");
+        for (Envio envio : listaEnvios) {
+            double costo = envio.calcularCosto();
+            costoTotalEmpresa += costo;
+
+            System.out.printf("Código: %s | Destinatario: %s | Costo: $%.2f%n",
+                    envio.getCodigo(),
+                    envio.getDestinatario(),
+                    costo);
         }
+
+        System.out.println("---------------------------------------");
+        System.out.printf("Costo Total Gestionado: $%.2f%n", costoTotalEmpresa);
     }
 }
